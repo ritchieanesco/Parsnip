@@ -1,16 +1,21 @@
-import React from "react";
+import * as React from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../actions";
 import SelectStatus from "./SelectStatus";
+import { Task as TaskType } from "../reducers/tasks";
 
-const Task = ({ task }) => {
+interface Props {
+  task: TaskType;
+}
+
+const Task: React.FC<Props> = ({ task }) => {
   const dispatch = useDispatch();
   const { title, description, status } = task;
-  const handleStatus = (e) => {
+  const handleStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     dispatch(actions.editTask(task, { status: e.target.value }));
   };
-  const handleRemove = (e) => {
+  const handleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(actions.deleteTask(task));
   };

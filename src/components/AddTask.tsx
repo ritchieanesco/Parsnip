@@ -1,21 +1,27 @@
-import React from "react";
+import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions";
 import { getCurrentProjectId } from "../reducers";
 
-const AddTaskForm = () => {
+interface Fields {
+  title: string;
+  description: string;
+}
+
+const AddTaskForm: React.FC = () => {
   const dispatch = useDispatch();
   const currentProjectId = useSelector(getCurrentProjectId);
-  const initialState = {
+  const initialState: Fields = {
     title: "",
     description: "",
   };
-  const [task, setTask] = React.useState(initialState);
+  const [task, setTask] = React.useState<Fields>(initialState);
   const resetForm = () => {
     setTask(initialState);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!currentProjectId) return;
     dispatch(
       actions.createTask({
         projectId: currentProjectId,
@@ -25,10 +31,10 @@ const AddTaskForm = () => {
     );
     resetForm();
   };
-  const handleTitleChange = (e) => {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTask({ ...task, title: e.target.value });
   };
-  const handleDescriptionChange = (e) => {
+  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTask({ ...task, description: e.target.value });
   };
   return (

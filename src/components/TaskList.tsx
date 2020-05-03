@@ -1,7 +1,13 @@
-import React from "react";
+import * as React from "react";
 import Task from "./Task";
+import { Task as TaskType } from "../reducers/tasks";
 
-const TaskList = ({ status, tasks }) => {
+interface Props {
+  status: string;
+  tasks: TaskType[];
+}
+
+const TaskList: React.FC<Props> = ({ status, tasks }) => {
   return (
     <div className="task-list">
       <div className="task-list-title">

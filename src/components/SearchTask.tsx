@@ -1,10 +1,10 @@
-import React from "react";
+import * as React from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../actions";
 
-const SearchTask = () => {
+const SearchTask: React.FC = () => {
   const dispatch = useDispatch();
-  const onSearch = (e) => {
+  const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(actions.filterTasks(e.target.value));
   };
 

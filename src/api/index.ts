@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Task } from "../reducers/tasks";
 
 const API_BASE_URL = "http://localhost:3001";
 
@@ -14,9 +15,11 @@ export const fetchTasks = () => client.get("/tasks", { data: null });
 export const fetchProjects = () =>
   client.get("/projects?_embed=tasks", { data: null });
 
-export const createTask = (params) =>
+export const createTask = (params: Omit<Task, "id" | "timer">) =>
   client.post("/tasks", { ...params, timer: 0 });
 
-export const editTask = (id, params) => client.put(`/tasks/${id}`, params);
+export const editTask = (id: number, params: Task) =>
+  client.put(`/tasks/${id}`, params);
 
-export const deleteTask = (id) => client.delete(`/tasks/${id}`, { data: null });
+export const deleteTask = (id: number) =>
+  client.delete(`/tasks/${id}`, { data: null });

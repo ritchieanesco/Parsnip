@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import TaskList from "./TaskList";
 import { useSelector } from "react-redux";
 import { getGroupedAndFilteredTasks } from "../reducers";
 
-const TasksPage = () => {
+const TasksPage: React.FC = () => {
   const tasks = useSelector(getGroupedAndFilteredTasks);
   return (
     <div className="task-lists">

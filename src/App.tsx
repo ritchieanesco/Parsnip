@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import TasksPage from "./components/TasksPage";
 import { useSelector, useDispatch } from "react-redux";
 import { getError } from "./reducers";
@@ -6,7 +6,7 @@ import * as actions from "./actions";
 import ErrorMessage from "./components/ErrorMessage";
 import Header from "./components/Header";
 
-function App() {
+const App: React.FC = () => {
   const dispatch = useDispatch();
   const error = useSelector(getError);
 
@@ -23,6 +23,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
