@@ -19,7 +19,7 @@ const AddTaskForm: React.FC = () => {
   const resetForm = () => {
     setTask(initialState);
   };
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!currentProjectId) return;
     dispatch(
@@ -31,18 +31,18 @@ const AddTaskForm: React.FC = () => {
     );
     resetForm();
   };
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTask({ ...task, title: e.target.value });
   };
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTask({ ...task, description: e.target.value });
   };
   return (
-    <form className="new-task-form" onSubmit={handleSubmit}>
+    <form className="new-task-form" onSubmit={onSubmit}>
       <input
         className="full-width-input"
         value={task.title}
-        onChange={handleTitleChange}
+        onChange={onChangeTitle}
         name="title"
         type="text"
         placeholder="title"
@@ -50,7 +50,7 @@ const AddTaskForm: React.FC = () => {
       <input
         className="full-width-input"
         value={task.description}
-        onChange={handleDescriptionChange}
+        onChange={onChangeDescription}
         name="description"
         type="text"
         placeholder="description"

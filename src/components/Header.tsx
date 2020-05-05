@@ -6,14 +6,14 @@ import * as actions from "../actions";
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const projects = useSelector(getProjects);
-  const onCurrentProjectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(actions.setCurrentProjectId(Number(e.target.value)));
   };
 
   return (
     <div className="project-item">
       Project:
-      <select onChange={onCurrentProjectChange} className="project-menu">
+      <select onChange={onChange} className="project-menu">
         {projects.map((project) => (
           <option key={project.id} value={project.id}>
             {project.name}

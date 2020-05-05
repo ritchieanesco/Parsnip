@@ -11,11 +11,11 @@ interface Props {
 const Task: React.FC<Props> = ({ task }) => {
   const dispatch = useDispatch();
   const { title, description, status } = task;
-  const handleStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     dispatch(actions.editTask(task, { status: e.target.value }));
   };
-  const handleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(actions.deleteTask(task));
   };
@@ -23,10 +23,10 @@ const Task: React.FC<Props> = ({ task }) => {
     <div className="task">
       <div className="task-header">
         <div>{title}</div>
-        <button type="button" onClick={handleRemove}>
+        <button type="button" onClick={onClick}>
           Remove
         </button>
-        <SelectStatus selected={status} handleStatus={handleStatus} />
+        <SelectStatus selected={status} onChange={onChange} />
       </div>
       <hr />
       <div className="task-body">

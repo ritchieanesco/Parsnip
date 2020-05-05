@@ -4,14 +4,14 @@ import { TASK_STATUSES } from "../constants";
 
 interface Props {
   selected: string;
-  handleStatus: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const SelectStatus: React.FC<Props> = ({
   selected = "",
-  handleStatus = (e) => {},
+  onChange = (e) => {},
 }) => (
-  <select value={selected} onChange={handleStatus}>
+  <select value={selected} onChange={onChange}>
     {TASK_STATUSES.map((status) => (
       <option key={v4()} value={status}>
         {status}

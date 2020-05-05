@@ -4,7 +4,7 @@ import SearchTask from "./SearchTask";
 
 const TasksHeader: React.FC = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
-  const toggleForm = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setVisible(!visible);
   };
@@ -16,7 +16,7 @@ const TasksHeader: React.FC = () => {
         <button
           type="button"
           className="button button-default"
-          onClick={toggleForm}
+          onClick={onClick}
         >
           + New task
         </button>
