@@ -10,16 +10,22 @@ const client = axios.create({
   },
 });
 
-export const fetchTasks = () => client.get("/tasks", { data: null });
+/** Fetches an object containing an array of Project and Tasks */
 
 export const fetchProjects = () =>
   client.get("/projects?_embed=tasks", { data: null });
 
+/** Creates a new task */
+
 export const createTask = (params: Omit<Task, "id" | "timer">) =>
   client.post("/tasks", { ...params, timer: 0 });
 
+/** Edits task with given id and the updated values */
+
 export const editTask = (id: number, params: Task) =>
   client.put(`/tasks/${id}`, params);
+
+/** Delets task with given id */
 
 export const deleteTask = (id: number) =>
   client.delete(`/tasks/${id}`, { data: null });
